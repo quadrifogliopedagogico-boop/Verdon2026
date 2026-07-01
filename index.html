@@ -296,6 +296,115 @@
     .day-card{ grid-template-columns: 40px 1fr; gap: 12px; }
     .timeline::before{ left: 19px; }
   }
+
+  /* ---------- TABELLA RIASSUNTIVA ---------- */
+  .riepilogo{
+    width: 100%; border-collapse: collapse; font-size: 0.9rem;
+    background: rgba(255,255,255,0.45);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .riepilogo thead tr{ background: var(--inchiostro); color: var(--crema); }
+  .riepilogo th{ padding: 11px 14px; text-align: left; font-family: Georgia, serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.02em; }
+  .riepilogo td{ padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .riepilogo tr:last-child td{ border-bottom: none; }
+  .riepilogo tr.highlight td{ background: rgba(193,87,58,0.07); }
+  .riepilogo td.n{ font-family: Georgia, serif; font-size: 1.05rem; font-weight: 700; color: var(--terracotta); width: 32px; }
+  .pill{ display:inline-block; font-family: ui-monospace, monospace; font-size: 0.72rem; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .pill-f{ background: var(--teal-soft); color: #1d4f4d; }
+  .pill-m{ background: var(--gold); color: #3d2e0d; }
+  .pill-i{ background: var(--terracotta-soft); color: #6b2310; }
+  .pill-d{ background: var(--terracotta); color: #fff; }
+  .pill-t{ background: var(--crema-2); color: var(--inchiostro-soft); border: 1px solid var(--line); }
+
+
+  /* corregge sovrapposizione greca timeline sul riquadro luogo */
+  .timeline .luogo{
+    margin-left: 56px;
+    background: var(--crema);
+  }
+
+  /* ---------- RIQUADRO LUOGO ---------- */
+  .luogo{
+    margin: 0 0 50px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.35);
+  }
+  .luogo-header{
+    background: var(--inchiostro);
+    color: var(--crema);
+    padding: 22px 28px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .luogo-header .lh-icon{
+    font-size: 2rem;
+    line-height: 1;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .luogo-header h2{
+    color: var(--crema);
+    font-size: 1.55rem;
+    margin: 0 0 4px;
+  }
+  .luogo-header .lh-sub{
+    font-family: ui-monospace, monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terracotta-soft);
+  }
+  .luogo-body{
+    padding: 26px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 32px;
+  }
+  .luogo-body.full{ grid-template-columns: 1fr; }
+  .luogo-sezione h3{
+    font-size: 0.95rem;
+    font-family: ui-monospace, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--terracotta);
+    margin: 0 0 10px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px;
+  }
+  .luogo-sezione p{ margin: 0 0 12px; font-size: 0.95rem; line-height: 1.65; }
+  .luogo-sezione p:last-child{ margin-bottom: 0; }
+  .luogo-fatti{
+    background: var(--crema-2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0 0;
+    font-size: 0.88rem;
+  }
+  .luogo-fatti div{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--line);
+    color: var(--inchiostro-soft);
+  }
+  .luogo-fatti div:last-child{ border-bottom: none; }
+  .luogo-fatti div b{ color: var(--inchiostro); min-width: 110px; flex-shrink: 0; }
+  .luogo-foto-strip{
+    grid-column: 1 / -1;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .luogo-foto-strip img{ width: 100%; display: block; max-height: 280px; object-fit: cover; object-position: center 30%; }
+  .luogo-foto-strip .cap{ padding: 9px 14px; font-size: 0.83rem; font-style: italic; color: var(--inchiostro-soft); background: rgba(255,255,255,0.5); }
+  @media(max-width:640px){ .luogo-body{ grid-template-columns: 1fr; } .luogo-header{ flex-direction: column; gap: 10px; } }
+
 </style>
 </head>
 <body>
@@ -317,17 +426,87 @@
 </div>
 
 <nav class="daynav">
-  <a href="#g1">Gio 1 · Viaggio</a>
-  <a href="#g2">Gio 2 · E-bike &amp; sireni</a>
-  <a href="#g3">Gio 3 · Lago &amp; Moustiers</a>
-  <a href="#g4">Gio 4 · Blanc-Martel</a>
-  <a href="#g5">Gio 5 · Rocca</a>
-  <a href="#g6">Gio 6 · Rientro</a>
+  <a href="#g1">Sab · Viaggio</a>
+  <a href="#g2">Dom · E-bike &amp; sireni</a>
+  <a href="#g3">Lun · Blanc-Martel ⭐</a>
+  <a href="#g4">Mar · Lago &amp; Moustiers</a>
+  <a href="#g5">Mer · Rocca</a>
+  <a href="#g6">Gio · Rientro</a>
   <a href="#pratiche">Info pratiche</a>
   <a href="#checklist">Checklist</a>
 </nav>
 
 <div class="wrap">
+
+
+<!-- TABELLA RIASSUNTIVA -->
+<section class="block" id="panoramica" style="padding-bottom:30px;">
+  <div class="section-label">Il programma in sintesi</div>
+  <div style="overflow-x:auto;">
+  <table class="riepilogo">
+    <thead>
+      <tr>
+        <th>Giorno</th>
+        <th>Data</th>
+        <th>Dove</th>
+        <th>Attività</th>
+        <th>Impegno</th>
+        <th>Chi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="n">1</td>
+        <td>Sab 4 lug</td>
+        <td>Briançon → Castellane</td>
+        <td>Viaggio — sosta Briançon (1h)</td>
+        <td><span class="pill pill-t">Trasferimento</span></td>
+        <td>Tutti</td>
+      </tr>
+      <tr>
+        <td class="n">2</td>
+        <td>Dom 5 lug</td>
+        <td>Campeggio / La Palud-sur-Verdon</td>
+        <td>Piscina · Route des Crêtes e-bike · Sentier des Siréniens</td>
+        <td><span class="pill pill-f">Facile</span></td>
+        <td>Famiglia / Papà (bici)</td>
+      </tr>
+      <tr class="highlight">
+        <td class="n">3</td>
+        <td>Lun 6 lug</td>
+        <td>Gorges du Verdon</td>
+        <td>Sentier Blanc-Martel (15 km, 600 m D+) + navetta</td>
+        <td><span class="pill pill-d">Difficile</span></td>
+        <td>Tutti</td>
+      </tr>
+      <tr>
+        <td class="n">4</td>
+        <td>Mar 7 lug</td>
+        <td>Lac de Sainte-Croix + Moustiers</td>
+        <td>Canoa / SUP · Borgo di Moustiers-Sainte-Marie</td>
+        <td><span class="pill pill-m">Moderato</span></td>
+        <td>Tutti</td>
+      </tr>
+      <tr>
+        <td class="n">5</td>
+        <td>Mer 8 lug</td>
+        <td>Castellane</td>
+        <td>Piscina · Centro storico · Rocca di Castellane (sera)</td>
+        <td><span class="pill pill-f">Facile</span></td>
+        <td>Tutti</td>
+      </tr>
+      <tr>
+        <td class="n">6</td>
+        <td>Gio 9 lug</td>
+        <td>Castellane → Nizza → Italia</td>
+        <td>Rientro — sosta Grasse (facoltativa)</td>
+        <td><span class="pill pill-t">Trasferimento</span></td>
+        <td>Tutti</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
 
 <section class="block timeline">
 
@@ -335,7 +514,7 @@
   <div class="day-card" id="g1">
     <div class="day-badge">1</div>
     <div class="day-content">
-      <div class="day-kicker">Venerdì 4 luglio</div>
+      <div class="day-kicker">Sabato 4 luglio</div>
       <h2>Verso il cielo, poi verso le gole</h2>
       <span class="badge trasferimento">Trasferimento</span>
       <p>Si parte da Abbiategrasso e si sale: Torino, Oulx, il valico del Colle del Monginevro, poi Briançon, Gap, Digne-les-Bains e infine Castellane. Circa 450 km e 5-6 ore di guida, soste escluse.</p>
@@ -356,10 +535,53 @@
   </div>
 
   <!-- GIORNO 2 -->
+  
+  <!-- RIQUADRO CASTELLANE -->
+  <div class="luogo" id="castellane">
+    <div class="luogo-header">
+      <div class="lh-icon">🏛</div>
+      <div>
+        <div class="lh-sub">La tua base per una settimana</div>
+        <h2>Castellane — tre millenni al crocevia delle Alpi</h2>
+      </div>
+    </div>
+    <div class="luogo-body">
+
+      <div class="luogo-sezione">
+        <h3>Una città che ha cambiato nome tre volte</h3>
+        <p>La storia di Castellane è quella di un insediamento che ha seguito le inondazioni, le invasioni e le convenienze strategiche spostandosi tre volte lungo la stessa parete rocciosa — come un dado che si riposiziona ma non abbandona mai il tavolo.</p>
+        <p>Il primo nome è <b>Ducelia</b>, sede della tribù ligure dei Suetri nella pianura sul Verdon. Arrivano i Romani e la rinominano <b>Salinae</b> — acqua salata — per via di una sorgente sfruttata come risorsa: il sale era moneta tanto per gli uomini quanto per il bestiame. La città si inserisce sulla <em>Via Salinaria</em>, la strada del sale che collegava Cimiez a Embrun, protetta da basi militari ai valichi. Le pietre miliari sono ancora visibili al Col des Lèques — lo stesso punto da cui parte il Sentier des Siréniens. Dopo la caduta di Roma, Salinae diventa sede di vescovado: un certo Claudius siede al concilio di Riez nel 439 d.C. come "vescovo dei Salinesi".</p>
+        <p>Poi arrivano i Saraceni, nell'812. La popolazione abbandona la pianura e sale in cima alla Roca — il blocco di calcare che ancora oggi sovrasta il paese a 900 metri di quota. Lassù nasce <b>Petra Castellana</b>, una città d'altura con mura, castello e chiesa. È il berceau della famiglia de Castellane, baronìa tra le più potenti della Provenza medievale: le cronache le attribuiscono oltre cento cavalieri di San Giovanni di Gerusalemme, due arcivescovi di Arles e un maresciallo di Francia. Un ramo della famiglia partecipò alle Crociate — si racconta che Pierre de Castellane fosse tra i comandanti sotto Goffredo di Buglione all'assedio di Gerusalemme del 1099.</p>
+        <p>Dal XII secolo in poi la città comincia la sua lenta discesa. Si forma un <em>bourg</em> ai piedi della Roca — il nucleo dell'attuale Castellane — circondato da mura nel XIV secolo. La città sull'altura viene definitivamente abbandonata. Nel 1483 Luigi XI fa demolire la cittadella in cima come atto simbolico: la Provenza entra nel regno di Francia e i baroni locali perdono ogni autonomia.</p>
+      </div>
+
+      <div class="luogo-sezione">
+        <h3>Cosa si vede girando il paese</h3>
+        <p>Castellane è percorribile a piedi in venti minuti ma vale la pena rallentare. Il centro gravita attorno alla <b>Place Marcel Sauvaire</b>, la piazza principale con i platani e i bar — è il termometro del paese: la mattina del mercato (mercoledì e sabato) si riempie di bancarelle di miele di montagna, formaggi, lavanda e verdure. È anche il punto da cui parte il sentiero per la Rocca.</p>
+        <p>La <b>chiesa Saint-Victor</b> risale al XII secolo, con volte che portano i segni delle Guerre di Religione: nel 1560 Antoine de Mauvans bruciò diverse chiese del paese durante le tensioni tra cattolici e ugonotti. La <b>Torre Pentagonale</b> e la <b>Torre dell'Orologio</b> — entrambe del XIV secolo — sono i resti superstiti della cinta muraria medievale. Il <b>Pont du Roc</b> del XVII secolo era per secoli l'unico punto in cui attraversare il Verdon in questo tratto: chi controllava il ponte controllava la via del sale.</p>
+        <p>In città si trovano anche una savonnerie, un'erboristeria-profumeria, una miellerie e alcune botteghe di artigianato — prodotti della <em>Route de la Lavande</em>. La <b>Maison Nature & Patrimoines</b> nel centro è il posto giusto per orientarsi su tutto il territorio del Parco del Verdon. Chi ha una curiosità specifica: c'è anche un piccolo Musée Citroën, peculiare e autentico come solo i musei di provincia sanno essere.</p>
+        <div class="luogo-fatti">
+          <div><b>Altitudine</b>724 m slm</div>
+          <div><b>Popolazione</b>~1.500 abitanti — sotto-prefettura delle A.-H.-Provence</div>
+          <div><b>Mercato</b>Mercoledì e sabato mattina, Place Marcel Sauvaire</div>
+          <div><b>Supermercato</b>In centro, aperto tutti i giorni d'estate</div>
+          <div><b>Farmacia</b>In centro, aperta tutti i giorni d'estate</div>
+          <div><b>Ospedale</b>Digne-les-Bains, ~55 km</div>
+        </div>
+      </div>
+
+      <div class="luogo-sezione" style="grid-column: 1 / -1;">
+        <h3>La Route Napoléon — un passaggio che vale una storia</h3>
+        <p>Castellane si trova sull'asse della <b>Route Napoléon</b> (la N85), la strada che Napoleone percorse nel marzo 1815 tornando dall'isola d'Elba verso Parigi in quella che la storia ricorda come i Cent-Jours. Partito da Golfe-Juan con un migliaio di soldati, evitò le valli del Rodano (ostili) e puntò sulle Alpi del Sud. Castellane fu una delle tappe del percorso — la popolazione locale, secondo i resoconti dell'epoca, lo accolse con curiosità più che entusiasmo. Tre settimane dopo Napoleone entrava a Parigi. Cento giorni dopo Waterloo metteva fine all'avventura. La strada porta ancora il suo nome.</p>
+      </div>
+
+    </div>
+  </div>
+
   <div class="day-card" id="g2">
     <div class="day-badge">2</div>
     <div class="day-content">
-      <div class="day-kicker">Sabato 5 luglio</div>
+      <div class="day-kicker">Domenica 5 luglio</div>
       <h2>Relax e un'avventura in solitaria</h2>
       <span class="badge facile">Relax</span> <span class="badge moderato">Bici (papà)</span>
       <p>Giornata libera tra piscina del campeggio, solarium e riposo dopo il viaggio — nessun programma fisso, chi vuole può girare Castellane a piedi nel pomeriggio.</p>
@@ -392,15 +614,16 @@
   <div class="day-card" id="g3">
     <div class="day-badge">3</div>
     <div class="day-content">
-      <div class="day-kicker">Domenica 6 luglio</div>
-      <h2>Acque turchesi e ceramiche dipinte</h2>
-      <span class="badge moderato">Moderato</span>
-      <p>Una giornata in due tempi: acqua al mattino, uno dei borghi più belli di Francia al pomeriggio.</p>
+      <div class="day-kicker">Lunedì 6 luglio</div>
+      <h2>Sentier Blanc-Martel — il cuore del viaggio</h2>
+      <span class="badge difficile">Difficile</span>
+      <p>È l'escursione iconica del Verdon: la più bella e la più impegnativa della settimana, l'unico sentiero che permette di camminare lungo il letto del fiume, in fondo alle gole.</p>
 
-      <div class="sub-activity">
-        <h3>Mattina · Lac de Sainte-Croix</h3>
-        <p>A circa 35 km da Castellane (45 minuti), con parcheggio all'imbarcadero di Sainte-Croix-de-Verdon o di Les Salles-sur-Verdon. Le acque color turchese si aprono proprio dove iniziano le gole: dall'imbarcadero si noleggiano canoe, kayak, SUP o pedalò per risalire a remi il canale naturale che entra nel canyon — spettacolare anche per i più piccoli. Tra le due e le tre ore sull'acqua sono la durata ideale.</p>
-        <div class="tip"><b>Consiglio ·</b> Arrivare entro le 9:30–10:00: in luglio il parcheggio si riempie in fretta e i noleggi fanno coda. Crema solare, cappello e acqua — il sole sul lago riflette ed è molto forte.</div>
+      <div class="data-strip">
+        <div><b>~15 km</b>solo andata</div>
+        <div><b>~600 m D+</b>dislivello</div>
+        <div><b>5h30–6h30</b>durata</div>
+        <div><b>Aller simple</b>navetta obbligatoria</div>
       </div>
 
       <div class="photo">
@@ -425,16 +648,15 @@
   <div class="day-card" id="g4">
     <div class="day-badge">4</div>
     <div class="day-content">
-      <div class="day-kicker">Lunedì 7 luglio</div>
-      <h2>Sentier Blanc-Martel — il cuore del viaggio</h2>
-      <span class="badge difficile">Difficile</span>
-      <p>È l'escursione iconica del Verdon: la più bella e la più impegnativa della settimana, l'unico sentiero che permette di camminare lungo il letto del fiume, in fondo alle gole.</p>
+      <div class="day-kicker">Martedì 7 luglio</div>
+      <h2>Acque turchesi e ceramiche dipinte</h2>
+      <span class="badge moderato">Moderato</span>
+      <p>Una giornata in due tempi: acqua al mattino, uno dei borghi più belli di Francia al pomeriggio.</p>
 
-      <div class="data-strip">
-        <div><b>~15 km</b>solo andata</div>
-        <div><b>~600 m D+</b>dislivello</div>
-        <div><b>5h30–6h30</b>durata</div>
-        <div><b>Aller simple</b>navetta obbligatoria</div>
+      <div class="sub-activity">
+        <h3>Mattina · Lac de Sainte-Croix</h3>
+        <p>A circa 35 km da Castellane (45 minuti), con parcheggio all'imbarcadero di Sainte-Croix-de-Verdon o di Les Salles-sur-Verdon. Le acque color turchese si aprono proprio dove iniziano le gole: dall'imbarcadero si noleggiano canoe, kayak, SUP o pedalò per risalire a remi il canale naturale che entra nel canyon — spettacolare anche per i più piccoli. Tra le due e le tre ore sull'acqua sono la durata ideale.</p>
+        <div class="tip"><b>Consiglio ·</b> Arrivare entro le 9:30–10:00: in luglio il parcheggio si riempie in fretta e i noleggi fanno coda. Crema solare, cappello e acqua — il sole sul lago riflette ed è molto forte.</div>
       </div>
 
       <p>Il percorso parte dal Chalet de la Maline e termina al Point Sublime (o viceversa). Scende nelle profondità delle gole, segue il Verdon, attraversa gallerie scavate nella roccia — la più lunga, 670 metri, richiede una frontale — e scale vertiginose, i 275 gradini della Brèche Imbert, tra belvedere sospesi su pareti calcaree color avorio.</p>
@@ -478,10 +700,10 @@
   <div class="day-card" id="g5">
     <div class="day-badge">5</div>
     <div class="day-content">
-      <div class="day-kicker">Martedì 8 luglio</div>
-      <h2>Recupero, poi luce dorata sulla Rocca</h2>
+      <div class="day-kicker">Mercoledì 8 luglio</div>
+      <h2>Recupero, centro storico, luce dorata sulla Rocca</h2>
       <span class="badge facile">Relax</span>
-      <p>Dopo il Blanc-Martel, una giornata per riprendere fiato: piscina al campeggio al mattino, nessun obbligo.</p>
+      <p>Dopo il Blanc-Martel, una giornata per riprendere fiato. Piscina al mattino. Nel pomeriggio l'occasione giusta per esplorare davvero Castellane — un'ora a piedi tra le vie del centro, il mercato se c'è, qualche negozio. È il paese in cui si dorme per tutta la settimana, eppure la si rischia di non vedere mai da vicino.</p>
 
       <div class="sub-activity">
         <h3>Sera · Passeggiata alla Rocca di Castellane</h3>
@@ -500,7 +722,7 @@
   <div class="day-card" id="g6">
     <div class="day-badge">6</div>
     <div class="day-content">
-      <div class="day-kicker">Mercoledì 9 luglio</div>
+      <div class="day-kicker">Giovedì 9 luglio</div>
       <h2>Rientro, con il profumo della Provenza</h2>
       <span class="badge trasferimento">Trasferimento</span>
       <p>Castellane → Col de Valferrière → Grasse → Nizza → rientro in Italia. La strada verso Nizza attraversa l'entroterra provenzale ed è già di per sé uno spettacolo: meglio non avere fretta.</p>
